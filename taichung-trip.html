@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台中兩天一夜 · 家族旅遊行程</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f0;
+    --warm-white: #fff9f2;
+    --ink: #2c1810;
+    --brown: #6b3a2a;
+    --amber: #c8793a;
+    --amber-light: #e8a96a;
+    --sage: #7a9e7e;
+    --sage-light: #a8c5ac;
+    --dust: #d4c4b0;
+    --mist: #e8ddd0;
+    --gold: #b8922a;
+    --red-accent: #c44b3a;
+    --shadow: rgba(44,24,16,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Decorative background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 10% 20%, rgba(200,121,58,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(122,158,126,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(212,196,176,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Noise texture overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 60px 0 40px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: white;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .hero h1 span {
+    color: var(--amber);
+  }
+
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--brown);
+    opacity: 0.8;
+    margin-bottom: 24px;
+  }
+
+  .hero-dates {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--brown);
+    letter-spacing: 1px;
+  }
+
+  .hero-dates .dot {
+    width: 5px; height: 5px;
+    background: var(--amber);
+    border-radius: 50%;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--dust), var(--amber-light), var(--dust), transparent);
+    margin: 32px 0;
+    position: relative;
+  }
+
+  .divider::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--cream);
+    color: var(--amber);
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  /* ── EDIT MODE BANNER ── */
+  .edit-banner {
+    background: linear-gradient(135deg, var(--sage), var(--sage-light));
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(122,158,126,0.2);
+  }
+
+  .edit-banner-text {
+    font-size: 13px;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .edit-toggle-btn {
+    background: white;
+    color: var(--sage);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+
+  .edit-toggle-btn:hover {
+    background: var(--ink);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* ── DAY HEADER ── */
+  .day-section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .day-section:nth-child(1) { animation-delay: 0.1s; }
+  .day-section:nth-child(2) { animation-delay: 0.2s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .day-number {
+    flex-shrink: 0;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .day-1 .day-number { background: var(--amber); color: white; }
+  .day-2 .day-number { background: var(--sage); color: white; }
+
+  .day-number .num {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .day-number .label {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-style: normal;
+  }
+
+  .day-info h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .day-info .date-line {
+    font-size: 13px;
+    color: var(--brown);
+    opacity: 0.75;
+    letter-spacing: 0.5px;
+  }
+
+  .day-line {
+    flex: 1;
+    height: 1px;
+  }
+
+  .day-1 .day-line { background: linear-gradient(to right, var(--amber-light), transparent); }
+  .day-2 .day-line { background: linear-gradient(to right, var(--sage-light), transparent); }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 36px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--amber-light), var(--dust), transparent);
+  }
+
+  .day-2 .timeline::before {
+    background: linear-gradient(to bottom, var(--sage-light), var(--dust), transparent);
+  }
+
+  .event-card {
+    position: relative;
+    margin-bottom: 20px;
+    background: var(--warm-white);
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 16px var(--shadow), 0 1px 4px rgba(44,24,16,0.05);
+    transition: box-shadow 0.2s, transform 0.2s;
+    border: 1px solid rgba(212,196,176,0.4);
+  }
+
+  .event-card:hover {
+    box-shadow: 0 6px 28px var(--shadow);
+    transform: translateY(-2px);
+  }
+
+  .event-card::before {
+    content: '';
+    position: absolute;
+    left: -29px;
+    top: 22px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--amber-light);
+    background: var(--amber);
+    z-index: 1;
+  }
+
+  .day-2 .event-card::before {
+    box-shadow: 0 0 0 2px var(--sage-light);
+    background: var(--sage);
+  }
+
+  .event-card.meal::before { background: var(--red-accent); box-shadow: 0 0 0 2px #e8a090; }
+  .event-card.rest::before { background: var(--dust); box-shadow: 0 0 0 2px var(--mist); }
+
+  .event-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+
+  .event-time {
+    flex-shrink: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--amber);
+    background: rgba(200,121,58,0.1);
+    border-radius: 6px;
+    padding: 3px 9px;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .day-2 .event-time { color: var(--sage); background: rgba(122,158,126,0.1); }
+
+  .event-time:hover { background: rgba(200,121,58,0.2); }
+  .day-2 .event-time:hover { background: rgba(122,158,126,0.2); }
+
+  .event-title-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .event-emoji {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .event-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.15s;
+    outline: none;
+    min-width: 40px;
+  }
+
+  .event-title:hover { border-bottom-color: var(--amber-light); }
+  .event-title:focus { border-bottom-color: var(--amber); background: rgba(200,121,58,0.05); border-radius: 3px; padding: 2px 4px; }
+
+  .event-actions {
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .event-card:hover .event-actions { opacity: 1; }
+
+  .btn-icon {
+    background: none;
+    border: 1px solid var(--dust);
+    border-radius: 7px;
+    width: 28px; height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--brown);
+    transition: all 0.15s;
+  }
+
+  .btn-icon:hover { background: var(--mist); border-color: var(--amber-light); }
+  .btn-icon.delete:hover { background: #fce8e5; border-color: #e08070; color: var(--red-accent); }
+
+  .event-note {
+    font-size: 13px;
+    color: var(--brown);
+    line-height: 1.7;
+    cursor: pointer;
+    outline: none;
+    min-height: 20px;
+    border-radius: 6px;
+    padding: 4px 6px;
+    margin-left: 34px;
+    opacity: 0.8;
+    transition: background 0.15s;
+  }
+
+  .event-note:hover { background: rgba(200,121,58,0.04); }
+  .event-note:focus { background: rgba(200,121,58,0.07); opacity: 1; }
+  .event-note:empty::before { content: attr(data-placeholder); opacity: 0.4; pointer-events: none; }
+
+  .event-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-left: 34px;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  .tag-food { background: #fde8d8; color: #8b4220; }
+  .tag-sight { background: #deeede; color: #2a5e30; }
+  .tag-shop { background: #fdecd8; color: #7a4010; }
+  .tag-rest { background: #e8e4f8; color: #3a3070; }
+  .tag-transport { background: #e0eaf5; color: #1a3a5c; }
+
+  /* Add event button */
+  .add-event-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 2px dashed var(--dust);
+    border-radius: 14px;
+    padding: 14px 20px;
+    width: 100%;
+    cursor: pointer;
+    color: var(--brown);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .add-event-btn:hover {
+    border-color: var(--amber-light);
+    color: var(--amber);
+    opacity: 1;
+    background: rgba(200,121,58,0.03);
+  }
+
+  /* ── BUDGET SUMMARY ── */
+  .budget-section {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 28px 28px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(212,196,176,0.5);
+    box-shadow: 0 2px 16px var(--shadow);
+  }
+
+  .budget-section h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .budget-item {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--mist);
+  }
+
+  .budget-input-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .budget-input {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--amber);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--amber-light);
+    outline: none;
+    width: 90px;
+    padding: 2px 4px;
+    border-radius: 0;
+    transition: border-color 0.15s;
+    -moz-appearance: textfield;
+  }
+
+  .budget-input::-webkit-outer-spin-button,
+  .budget-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  .budget-input:focus {
+    border-bottom-color: var(--amber);
+    background: rgba(200,121,58,0.05);
+  }
+
+  .budget-unit {
+    font-size: 12px;
+    color: var(--brown);
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
+  .budget-total {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--dust);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    color: var(--brown);
+    text-align: right;
+  }
+
+  .budget-total span {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-left: 4px;
+  }
+
+  .budget-amount {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--amber);
+    cursor: pointer;
+    outline: none;
+    min-width: 60px;
+    display: inline-block;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.15s;
+  }
+
+  .budget-amount:hover { border-bottom-color: var(--amber-light); }
+  .budget-amount:focus { border-bottom-color: var(--amber); background: rgba(200,121,58,0.06); border-radius: 3px; padding: 2px 4px; }
+  .budget-amount::after { content: ' 元'; font-size: 12px; font-weight: 400; color: var(--brown); opacity: 0.6; }
+
+  .budget-note {
+    font-size: 12px;
+    color: var(--brown);
+    opacity: 0.7;
+    text-align: right;
+    cursor: pointer;
+    outline: none;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.15s;
+  }
+
+  .budget-note:hover { border-bottom-color: var(--dust); }
+  .budget-note:focus { border-bottom-color: var(--brown); background: rgba(107,58,42,0.04); border-radius: 3px; padding: 2px 6px; }
+
+  /* ── NOTES ── */
+  .notes-section {
+    background: linear-gradient(135deg, #fef9f0, #faf4e8);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid rgba(200,121,58,0.15);
+    box-shadow: 0 2px 16px var(--shadow);
+    margin-bottom: 40px;
+  }
+
+  .notes-section h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .notes-area {
+    width: 100%;
+    min-height: 100px;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+  }
+
+  .notes-area::placeholder { color: var(--brown); opacity: 0.4; }
+
+  /* ── PRINT / SHARE ── */
+  .action-bar {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    border: none;
+  }
+
+  .action-btn.primary {
+    background: var(--amber);
+    color: white;
+    box-shadow: 0 4px 16px rgba(200,121,58,0.35);
+  }
+
+  .action-btn.primary:hover {
+    background: var(--brown);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,121,58,0.35);
+  }
+
+  .action-btn.secondary {
+    background: var(--warm-white);
+    color: var(--brown);
+    border: 1px solid var(--dust);
+  }
+
+  .action-btn.secondary:hover {
+    background: var(--mist);
+    border-color: var(--amber-light);
+    transform: translateY(-2px);
+  }
+
+  /* ── TIME EDITOR POPUP ── */
+  .time-popup {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 18px;
+    padding: 28px 32px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+    z-index: 1000;
+    min-width: 280px;
+  }
+
+  .time-popup.active { display: block; }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44,24,16,0.3);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+  }
+
+  .overlay.active { display: block; }
+
+  .time-popup h4 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  .time-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--dust);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--ink);
+    outline: none;
+    margin-bottom: 16px;
+  }
+
+  .time-input:focus { border-color: var(--amber); }
+
+  .popup-btns { display: flex; gap: 10px; }
+  .popup-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .popup-btn.confirm { background: var(--amber); color: white; }
+  .popup-btn.confirm:hover { background: var(--brown); }
+  .popup-btn.cancel { background: var(--mist); color: var(--brown); }
+  .popup-btn.cancel:hover { background: var(--dust); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--brown);
+    opacity: 0.5;
+    padding-top: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body::before, body::after { display: none; }
+    .edit-banner, .add-event-btn, .event-actions, .action-bar { display: none !important; }
+    .event-card { break-inside: avoid; box-shadow: none; border: 1px solid var(--dust); }
+    .container { max-width: 100%; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 520px) {
+    .hero h1 { font-size: 28px; }
+    .timeline { padding-left: 28px; }
+    .budget-grid { grid-template-columns: 1fr 1fr; }
+    .event-top { flex-wrap: wrap; }
+  }
+
+  /* Edit mode highlight */
+  body.edit-mode [contenteditable]:not(:focus) {
+    border-bottom: 1px dashed var(--amber-light) !important;
+  }
+
+  body.edit-mode .event-time { cursor: pointer; }
+  body.edit-mode .event-time:hover { text-decoration: underline; }
+
+  .save-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--sage);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 6px 24px rgba(122,158,126,0.4);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 9999;
+    pointer-events: none;
+  }
+
+  .save-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="time-popup" id="timePopup">
+  <h4>✏️ 修改時間</h4>
+  <input type="time" class="time-input" id="timeInput">
+  <div class="popup-btns">
+    <button class="popup-btn cancel" onclick="closePopup()">取消</button>
+    <button class="popup-btn confirm" onclick="confirmTime()">確認</button>
+  </div>
+</div>
+
+<div class="save-toast" id="saveToast">✅ 已儲存到瀏覽器</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Family Trip · 家族旅遊</div>
+    <h1>台中<span>兩天一夜</span><br>深度慢遊</h1>
+    <div class="hero-sub">A perfect weekend escape with family</div>
+    <div class="hero-dates">
+      <span>2025 年 5 月 16 日（六）</span>
+      <div class="dot"></div>
+      <span>5 月 17 日（日）</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EDIT BANNER -->
+  <div class="edit-banner">
+    <div class="edit-banner-text">
+      ✏️ 點擊任意文字即可直接編輯，時間標籤可點擊修改
+    </div>
+    <button class="edit-toggle-btn" id="editToggle" onclick="toggleEditMode()">開啟編輯模式</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-section day-1" id="day1">
+    <div class="day-header">
+      <div class="day-number">
+        <span class="num">DAY</span>
+        <span class="label">ONE · 第一天</span>
+      </div>
+      <div class="day-info">
+        <h2>通霄一日遊 ✦ 香菇園 × 日本神社</h2>
+        <div class="date-line">5 月 16 日（六）· 早點出門，晚上回台中家</div>
+      </div>
+      <div class="day-line"></div>
+    </div>
+
+    <div class="timeline" id="timeline1">
+
+      <div class="event-card" data-id="e1">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">08:00</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🏠</span>
+            <span class="event-title" contenteditable="false">從台中家出發</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">整理好出發，記得帶防曬、水壺、舒適好走的鞋</div>
+        <div class="event-tags"><span class="tag tag-transport">出發</span></div>
+      </div>
+
+      <div class="event-card" data-id="e2">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">08:35</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🚌</span>
+            <span class="event-title" contenteditable="false">從奉順宮搭 276 公車</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">搭 8:35 的 276 公車，約一小時車程到中星嶺站，長輩坐著休息剛好</div>
+        <div class="event-tags"><span class="tag tag-transport">公車</span></div>
+      </div>
+
+      <div class="event-card" data-id="e3">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">09:40</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">💜</span>
+            <span class="event-title" contenteditable="false">中星嶺｜星願紫風車</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">下車後先在這裡拍照、上廁所，風車景色優美，不需走太多路</div>
+        <div class="event-tags"><span class="tag tag-sight">景點</span></div>
+      </div>
+
+      <div class="event-card" data-id="e4">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">10:30</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🍄</span>
+            <span class="event-title" contenteditable="false">阿亮香菇園</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">從中星嶺坐公車過來，比百菇園近、走路少，附近也比較熱鬧，適合長輩</div>
+        <div class="event-tags"><span class="tag tag-sight">景點</span><span class="tag tag-shop">體驗</span></div>
+      </div>
+
+      <div class="event-card meal" data-id="e5">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">12:30</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🍱</span>
+            <span class="event-title" contenteditable="false">午餐｜通霄市區</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">在通霄市區找間舒適的餐廳，讓長輩好好坐著吃飯休息</div>
+        <div class="event-tags"><span class="tag tag-food">午餐</span></div>
+      </div>
+
+      <div class="event-card rest" data-id="e6">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">14:00</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">☕</span>
+            <span class="event-title" contenteditable="false">下午茶休息時光</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">找間有座位的咖啡店或飲料店，讓長輩休息補充體力，傍晚還有好戲</div>
+        <div class="event-tags"><span class="tag tag-rest">休息</span><span class="tag tag-food">下午茶</span></div>
+      </div>
+
+      <div class="event-card" data-id="e7">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">17:30</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">⛩</span>
+            <span class="event-title" contenteditable="false">通霄日本神社旁｜傍晚夜景</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">傍晚和晚上燈光很美，日式神社氛圍十足，適合拍照留念，步道平緩長輩好走</div>
+        <div class="event-tags"><span class="tag tag-sight">夜景</span></div>
+      </div>
+
+      <div class="event-card meal" data-id="e8">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">19:00</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🌙</span>
+            <span class="event-title" contenteditable="false">晚餐｜通霄或沿途</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">吃完晚餐再踏上回程，讓大家都吃飽再坐車比較舒服</div>
+        <div class="event-tags"><span class="tag tag-food">晚餐</span></div>
+      </div>
+
+      <div class="event-card rest" data-id="e9">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">21:00</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🏠</span>
+            <span class="event-title" contenteditable="false">回到台中溫暖的家 🎉</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">今天辛苦了！回到自己家最舒服，明天繼續台中市區散步</div>
+        <div class="event-tags"><span class="tag tag-rest">返家</span></div>
+      </div>
+
+    </div>
+
+    <button class="add-event-btn" onclick="addEvent('timeline1', '1')">
+      ＋ 新增第一天行程
+    </button>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-section day-2" id="day2">
+    <div class="day-header">
+      <div class="day-number">
+        <span class="num">DAY</span>
+        <span class="label">TWO · 第二天</span>
+      </div>
+      <div class="day-info">
+        <h2>國美館散步 ✦ 審計新村文創</h2>
+        <div class="date-line">5 月 17 日（日）· 輕鬆步調，15:30 搭火車返程</div>
+      </div>
+      <div class="day-line"></div>
+    </div>
+
+    <div class="timeline" id="timeline2">
+
+      <div class="event-card" data-id="e10">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">09:00</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🌅</span>
+            <span class="event-title" contenteditable="false">慢慢起床吃早餐</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">昨天出遊辛苦了，今天星期日不趕時間，讓長輩睡晚一點再出門</div>
+        <div class="event-tags"><span class="tag tag-food">早餐</span><span class="tag tag-rest">悠閒</span></div>
+      </div>
+
+      <div class="event-card" data-id="e11">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">10:30</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🏛</span>
+            <span class="event-title" contenteditable="false">國立臺灣美術館</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">免費入館！館內空調涼爽、全程室內，長輩不用擔心日曬，可坐著欣賞藝術品，逛約 1.5 小時</div>
+        <div class="event-tags"><span class="tag tag-sight">藝術</span></div>
+      </div>
+
+      <div class="event-card meal" data-id="e12">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">12:00</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🍱</span>
+            <span class="event-title" contenteditable="false">午餐｜國美館附近</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">館內 B1 有餐廳，或走到附近找台菜、家常料理，讓長輩舒適用餐</div>
+        <div class="event-tags"><span class="tag tag-food">午餐</span></div>
+      </div>
+
+      <div class="event-card" data-id="e13">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">13:30</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🏘</span>
+            <span class="event-title" contenteditable="false">審計新村散步</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">文創小店、咖啡廳聚集，路面平坦好走，可慢慢逛慢慢坐，逛約 1 小時即可</div>
+        <div class="event-tags"><span class="tag tag-shop">文創</span><span class="tag tag-food">下午茶</span></div>
+      </div>
+
+      <div class="event-card" data-id="e14">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">14:30</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🚆</span>
+            <span class="event-title" contenteditable="false">前往台中火車站</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">預留充裕時間慢慢移動，不趕路，讓長輩走得從容，提早到站等候</div>
+        <div class="event-tags"><span class="tag tag-transport">交通</span></div>
+      </div>
+
+      <div class="event-card" data-id="e15">
+        <div class="event-top">
+          <span class="event-time" onclick="openTimePopup(this)">15:30</span>
+          <div class="event-title-wrap">
+            <span class="event-emoji">🚆</span>
+            <span class="event-title" contenteditable="false">搭火車返程出發 🎉</span>
+          </div>
+          <div class="event-actions">
+            <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+          </div>
+        </div>
+        <div class="event-note" contenteditable="false" data-placeholder="點此新增備註說明…">兩天滿滿的家族回憶，帶著好心情平安回家！</div>
+        <div class="event-tags"><span class="tag tag-transport">返程</span></div>
+      </div>
+
+    </div>
+
+    <button class="add-event-btn" onclick="addEvent('timeline2', '2')">
+      ＋ 新增第二天行程
+    </button>
+  </div>
+
+  <!-- BUDGET -->
+  <div class="budget-section">
+    <h3>💰 預算規劃</h3>
+    <div class="budget-grid">
+      <div class="budget-item">
+        <div class="budget-label">🍜 餐飲</div>
+        <div class="budget-input-wrap"><input class="budget-input" id="b1" type="number" value="2000" min="0"><span class="budget-unit">元</span></div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-label">🚌 交通（公車/火車）</div>
+        <div class="budget-input-wrap"><input class="budget-input" id="b2" type="number" value="800" min="0"><span class="budget-unit">元</span></div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-label">🎟 門票／入場費</div>
+        <div class="budget-input-wrap"><input class="budget-input" id="b3" type="number" value="0" min="0"><span class="budget-unit">元</span></div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-label">🛍 購物／伴手禮</div>
+        <div class="budget-input-wrap"><input class="budget-input" id="b4" type="number" value="1000" min="0"><span class="budget-unit">元</span></div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-label">🍦 零食／飲料</div>
+        <div class="budget-input-wrap"><input class="budget-input" id="b5" type="number" value="500" min="0"><span class="budget-unit">元</span></div>
+      </div>
+      <div class="budget-item">
+        <div class="budget-label">🎉 其他</div>
+        <div class="budget-input-wrap"><input class="budget-input" id="b6" type="number" value="300" min="0"><span class="budget-unit">元</span></div>
+      </div>
+    </div>
+    <div class="budget-total">合計估算：<span id="budgetTotal">0</span> 元</div>
+    <div class="budget-note" contenteditable="true" id="budgetNote">* 住自己家省住宿費，輕鬆出遊最省錢！可依人數平均分攤</div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="notes-section">
+    <h3>📝 行程備忘錄</h3>
+    <textarea class="notes-area" id="tripNotes" placeholder="在這裡記下注意事項、訂位資訊、聯絡電話…&#10;&#10;例如：&#10;• 逢甲夜市停車場：XXXX&#10;• 飯店電話：XXXX&#10;• 記得帶：雨傘、防曬、行動電源"></textarea>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="action-bar">
+    <button class="action-btn primary" onclick="saveToLocal()">💾 儲存行程</button>
+    <button class="action-btn secondary" onclick="window.print()">🖨 列印 / PDF</button>
+    <button class="action-btn secondary" onclick="shareLink()">🔗 分享連結</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="footer">台中兩天一夜 · 家族慢遊計劃 · 2025 May</div>
+
+</div><!-- /container -->
+
+<script>
+let editMode = false;
+let currentTimeEl = null;
+let eventCounter = 20;
+
+// ── EDIT MODE ──
+function toggleEditMode() {
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  const btn = document.getElementById('editToggle');
+
+  const editables = document.querySelectorAll('[contenteditable]');
+  editables.forEach(el => {
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+
+  if (editMode) {
+    btn.textContent = '✅ 完成編輯';
+    btn.style.background = '#2c1810';
+    btn.style.color = 'white';
+  } else {
+    btn.textContent = '開啟編輯模式';
+    btn.style.background = 'white';
+    btn.style.color = 'var(--sage)';
+    saveToLocal(true);
+  }
+}
+
+// ── TIME POPUP ──
+function openTimePopup(el) {
+  if (!editMode) return;
+  currentTimeEl = el;
+  document.getElementById('timeInput').value = el.textContent.trim();
+  document.getElementById('timePopup').classList.add('active');
+  document.getElementById('overlay').classList.add('active');
+}
+
+function closePopup() {
+  document.getElementById('timePopup').classList.remove('active');
+  document.getElementById('overlay').classList.remove('active');
+  currentTimeEl = null;
+}
+
+function confirmTime() {
+  if (currentTimeEl) {
+    const val = document.getElementById('timeInput').value;
+    if (val) currentTimeEl.textContent = val;
+  }
+  closePopup();
+}
+
+// ── ADD EVENT ──
+function addEvent(timelineId, day) {
+  if (!editMode) {
+    alert('請先點擊「開啟編輯模式」再新增行程！');
+    return;
+  }
+  const timeline = document.getElementById(timelineId);
+  const id = 'e' + (++eventCounter);
+  const card = document.createElement('div');
+  card.className = 'event-card';
+  card.dataset.id = id;
+  card.innerHTML = `
+    <div class="event-top">
+      <span class="event-time" onclick="openTimePopup(this)">12:00</span>
+      <div class="event-title-wrap">
+        <span class="event-emoji" contenteditable="true">📍</span>
+        <span class="event-title" contenteditable="true">新增行程名稱</span>
+      </div>
+      <div class="event-actions">
+        <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
+      </div>
+    </div>
+    <div class="event-note" contenteditable="true" data-placeholder="點此新增備註說明…"></div>
+    <div class="event-tags"></div>
+  `;
+  timeline.appendChild(card);
+  card.querySelector('.event-title').focus();
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ── DELETE EVENT ──
+function deleteEvent(btn) {
+  if (!editMode) return;
+  const card = btn.closest('.event-card');
+  if (confirm('確定要刪除這個行程嗎？')) {
+    card.style.transition = 'all 0.3s ease';
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(-20px)';
+    setTimeout(() => card.remove(), 300);
+  }
+}
+
+// ── SAVE ──
+function saveToLocal(silent = false) {
+  try {
+    const data = {
+      version: TRIP_VERSION,
+      timeline1: document.getElementById('timeline1').innerHTML,
+      timeline2: document.getElementById('timeline2').innerHTML,
+      budgets: ['b1','b2','b3','b4','b5','b6'].map(id => document.getElementById(id).value),
+      budgetNote: document.getElementById('budgetNote').textContent,
+      notes: document.getElementById('tripNotes').value,
+      saved: new Date().toISOString()
+    };
+    localStorage.setItem('taichung-trip', JSON.stringify(data));
+    if (!silent) showToast('✅ 已儲存到瀏覽器');
+  } catch(e) {}
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('saveToast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2800);
+}
+
+// ── LOAD ──
+function loadFromLocal() {
+  try {
+    const raw = localStorage.getItem('taichung-trip');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data.timeline1) document.getElementById('timeline1').innerHTML = data.timeline1;
+    if (data.timeline2) document.getElementById('timeline2').innerHTML = data.timeline2;
+    if (data.budgets) {
+      ['b1','b2','b3','b4','b5','b6'].forEach((id,i) => {
+        if (data.budgets[i] !== undefined) document.getElementById(id).value = data.budgets[i];
+      });
+      calcBudgetTotal();
+    }
+    if (data.budgetNote) document.getElementById('budgetNote').textContent = data.budgetNote;
+    if (data.notes) document.getElementById('tripNotes').value = data.notes;
+  } catch(e) {}
+}
+
+// ── SHARE ──
+function shareLink() {
+  if (navigator.share) {
+    navigator.share({
+      title: '台中兩天一夜家族旅遊行程',
+      text: '來看看我們的台中旅遊計劃！',
+      url: window.location.href
+    });
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      showToast('🔗 連結已複製到剪貼簿！');
+    }).catch(() => {
+      showToast('請手動複製網址列分享給家人');
+    });
+  }
+}
+
+function calcBudgetTotal() {
+  const total = ['b1','b2','b3','b4','b5','b6']
+    .reduce((sum, id) => sum + (parseInt(document.getElementById(id).value) || 0), 0);
+  document.getElementById('budgetTotal').textContent = total.toLocaleString();
+}
+
+// Live update total when any budget input changes
+['b1','b2','b3','b4','b5','b6'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calcBudgetTotal);
+});
+calcBudgetTotal();
+// 版本號：每次更新行程就換號，強制清除舊快取
+const TRIP_VERSION = 'v3';
+const saved = localStorage.getItem('taichung-trip');
+if (saved) {
+  try {
+    const d = JSON.parse(saved);
+    if (d.version !== TRIP_VERSION) {
+      // 舊版資料，清除，使用 HTML 內建的最新行程
+      localStorage.removeItem('taichung-trip');
+    } else {
+      loadFromLocal();
+    }
+  } catch(e) {
+    localStorage.removeItem('taichung-trip');
+  }
+}
+
+// Auto-save every 30 seconds
+setInterval(() => saveToLocal(true), 30000);
+</script>
+</body>
+</html>
