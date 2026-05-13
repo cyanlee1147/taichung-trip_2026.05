@@ -364,13 +364,17 @@
     font-weight: 600;
     color: var(--ink);
     cursor: pointer;
-    border-bottom: 1px dashed transparent;
-    transition: border-color 0.15s;
+    border-bottom: 1px dashed var(--amber-light);
+    transition: all 0.15s;
     outline: none;
     min-width: 40px;
   }
 
-  .event-title:hover { border-bottom-color: var(--amber-light); }
+  .event-title:hover { 
+    border-bottom-style: solid; 
+    color: var(--amber);
+  }
+  
   .event-title:focus { border-bottom-color: var(--amber); background: rgba(200,121,58,0.05); border-radius: 3px; padding: 2px 4px; }
 
   .event-actions {
@@ -829,7 +833,7 @@
   <!-- EDIT BANNER -->
   <div class="edit-banner">
     <div class="edit-banner-text">
-      ✏️ 點擊任意文字即可直接編輯，時間標籤可點擊修改
+      ✏️ 點擊地點名稱可跳轉地圖；開啟編輯模式後可點選時間或文字修改
     </div>
     <button class="edit-toggle-btn" id="editToggle" onclick="toggleEditMode()">開啟編輯模式</button>
   </div>
@@ -855,7 +859,7 @@
           <span class="event-time" onclick="openTimePopup(this)">08:00</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🏠</span>
-            <span class="event-title" contenteditable="false">從台中家出發</span>
+            <span class="event-title" contenteditable="false" onclick="openMap(this.innerText)">從台中家出發</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -870,7 +874,7 @@
           <span class="event-time" onclick="openTimePopup(this)">08:35</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🚌</span>
-            <span class="event-title" contenteditable="false">從奉順宮搭 276 公車</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('奉順宮')">從奉順宮搭 276 公車</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -885,7 +889,7 @@
           <span class="event-time" onclick="openTimePopup(this)">09:40</span>
           <div class="event-title-wrap">
             <span class="event-emoji">💜</span>
-            <span class="event-title" contenteditable="false">中星嶺｜星願紫風車</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('星願紫風車')">中星嶺｜星願紫風車</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -900,7 +904,7 @@
           <span class="event-time" onclick="openTimePopup(this)">10:30</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🍄</span>
-            <span class="event-title" contenteditable="false">阿亮香菇園</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('阿亮香菇園')">阿亮香菇園</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -915,7 +919,7 @@
           <span class="event-time" onclick="openTimePopup(this)">12:30</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🍱</span>
-            <span class="event-title" contenteditable="false">午餐｜市區</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('台中美食')">午餐｜市區</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -930,7 +934,7 @@
           <span class="event-time" onclick="openTimePopup(this)">14:00</span>
           <div class="event-title-wrap">
             <span class="event-emoji">☕</span>
-            <span class="event-title" contenteditable="false">下午茶休息時光</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('台中咖啡廳')">下午茶休息時光</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -945,7 +949,7 @@
           <span class="event-time" onclick="openTimePopup(this)">17:30</span>
           <div class="event-title-wrap">
             <span class="event-emoji">⛩</span>
-            <span class="event-title" contenteditable="false">日本神社旁｜傍晚夜景</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('台中日本神社')">日本神社旁｜傍晚夜景</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -960,7 +964,7 @@
           <span class="event-time" onclick="openTimePopup(this)">19:00</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🌙</span>
-            <span class="event-title" contenteditable="false">晚餐｜沿途</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('台中餐廳')">晚餐｜沿途</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -1001,7 +1005,7 @@
       </div>
       <div class="day-info">
         <h2>國美館散步 ✦ 審計新村文創</h2>
-        <div class="date-line">5 月 17 日（日）· 輕鬆步調，15:30 搭火車返程</div>
+        <div class="date-line">5 月 17 日（日）· 輕鬆步調，15:30 搭火戰返程</div>
       </div>
       <div class="day-line"></div>
     </div>
@@ -1028,7 +1032,7 @@
           <span class="event-time" onclick="openTimePopup(this)">10:30</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🏛</span>
-            <span class="event-title" contenteditable="false">國立臺灣美術館</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('國立臺灣美術館')">國立臺灣美術館</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -1043,7 +1047,7 @@
           <span class="event-time" onclick="openTimePopup(this)">12:00</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🍱</span>
-            <span class="event-title" contenteditable="false">午餐｜國美館附近</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('國美館餐廳')">午餐｜國美館附近</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -1058,7 +1062,7 @@
           <span class="event-time" onclick="openTimePopup(this)">13:30</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🏘</span>
-            <span class="event-title" contenteditable="false">審計新村散步</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('審計新村')">審計新村散步</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -1073,7 +1077,7 @@
           <span class="event-time" onclick="openTimePopup(this)">14:30</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🚆</span>
-            <span class="event-title" contenteditable="false">前往台中火車站</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('台中火車站')">前往台中火車站</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -1088,7 +1092,7 @@
           <span class="event-time" onclick="openTimePopup(this)">15:30</span>
           <div class="event-title-wrap">
             <span class="event-emoji">🚆</span>
-            <span class="event-title" contenteditable="false">搭火車返程出發 🎉</span>
+            <span class="event-title" contenteditable="false" onclick="openMap('台中火車站')">搭火車返程出發 🎉</span>
           </div>
           <div class="event-actions">
             <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -1161,6 +1165,16 @@ let editMode = false;
 let currentTimeEl = null;
 let eventCounter = 20;
 
+// ── OPEN GOOGLE MAPS ──
+function openMap(locationName) {
+  if (editMode) return; // 編輯模式下不跳轉
+  if (!locationName || locationName.includes('新增行程')) return;
+  
+  // 過濾掉一些輔助詞，讓搜尋更準確
+  const query = encodeURIComponent(locationName.replace('午餐｜', '').replace('晚餐｜', '').replace('從', '').replace('前往', ''));
+  window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, '_blank');
+}
+
 // ── EDIT MODE ──
 function toggleEditMode() {
   editMode = !editMode;
@@ -1223,7 +1237,7 @@ function addEvent(timelineId, day) {
       <span class="event-time" onclick="openTimePopup(this)">12:00</span>
       <div class="event-title-wrap">
         <span class="event-emoji" contenteditable="true">📍</span>
-        <span class="event-title" contenteditable="true">新增行程名稱</span>
+        <span class="event-title" contenteditable="true" onclick="openMap(this.innerText)">新增行程名稱</span>
       </div>
       <div class="event-actions">
         <button class="btn-icon delete" onclick="deleteEvent(this)" title="刪除">🗑</button>
@@ -1320,14 +1334,14 @@ function calcBudgetTotal() {
   document.getElementById(id).addEventListener('input', calcBudgetTotal);
 });
 calcBudgetTotal();
+
 // 版本號：每次更新行程就換號，強制清除舊快取
-const TRIP_VERSION = 'v3';
+const TRIP_VERSION = 'v4';
 const saved = localStorage.getItem('taichung-trip');
 if (saved) {
   try {
     const d = JSON.parse(saved);
     if (d.version !== TRIP_VERSION) {
-      // 舊版資料，清除，使用 HTML 內建的最新行程
       localStorage.removeItem('taichung-trip');
     } else {
       loadFromLocal();
